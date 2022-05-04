@@ -27,33 +27,40 @@ Requirements
 Setup
 #####
 
-Define log db path (possibly in your `.lvimrc`, with `vim-localvimrc` plugin) with VimScript:
+Define log db path (possibly in your ``.lvimrc``, with ``vim-localvimrc``
+plugin) with VimScript:
 
-   let g:logger_db_path = 'D:/drive\ with\ spaces/my_logs.db'
+   ``let g:logger_db_path = 'D:/drive\ with\ spaces/my_logs.db'``
 
-or with Lua in your `init.lua` (Lua `.lvimrc` plugin does not exist AFAIK):
+or with Lua in your ``init.lua`` (Lua-based ``.lvimrc`` plugin does not exist
+AFAIK):
 
-   vim.g.logger_db_path = 'D:/drive\ with\ spaces/my_logs.db'
+   ``vim.g.logger_db_path = 'D:/drive\ with\ spaces/my_logs.db'``
 
 Use environment variables when needed:
 
-   let g:logger_db_path = $project_dir . '/my_logs.db'
+   ``let g:logger_db_path = $project_dir . '/my_logs.db'``
 
 or
 
-   vim.g.logger_db_path = vim.env.project_dir .. '/my_logs.db'
+   ``vim.g.logger_db_path = vim.env.project_dir .. '/my_logs.db'``
 
-If not defined, 'C:\temp\logs.db' will be used.
+If not defined, ``C:\temp\logs.db`` will be used.
 
 Call Lua logging function when needed:
 
-   lua require'logger'.logme()
+   ``lua require'logger'.logme()``
 
-Use autocommands (possibly in your `.lvimrc`):
+Use autocommands (possibly in your ``.lvimrc``):
 
-   autocmd BufWritePost * lua require'logger'.logme()
+   | ``augroup logs``
+   | ``au! logs``
+   | ``autocmd BufWritePost * lua require'logger'.logme()``
+   | ``augroup END``
+
 
 License
 #######
 
-You can do whatever you want with these few lines of code. PRs are welcome for sure.
+You can do whatever you want with these few lines of code. PRs are welcome for
+sure.
