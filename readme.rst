@@ -8,6 +8,7 @@ Description
 This simple plugin for Neovim logs into a SQLiteDB what you want and when you
 want it. For now it logs:
 
+- message from ``logme(message)``;
 - current buffer name;
 - current cursor position;
 - human-readable timestamp;
@@ -49,15 +50,21 @@ If not defined, ``C:\temp\logs.db`` will be used.
 
 Call Lua logging function when needed:
 
-   ``lua require'logger'.logme()``
+   ``lua require'logger'.logme('my log message')``
 
 Use autocommands (possibly in your ``.lvimrc``):
 
-   | ``augroup logs``
-   | ``au! logs``
-   | ``autocmd BufWritePost * lua require'logger'.logme()``
-   | ``augroup END``
+| ``augroup logs``
+| ``au! logs``
+| ``autocmd BufReadPost * lua require'logger'.logme('new/open')``
+| ``autocmd BufWritePost * lua require'logger'.logme('save')``
+| ``autocmd BufUnload * lua require'logger'.logme('close')``
+| ``augroup END``
 
+Keep in mind ``BufRead*`` will not fire when autocommand is defined in
+``.lvimrc``, and the file is opened with command line. ``vim-localvimrc`` has
+to load and start looking for ``.lvimrc`` in current directory, but the file
+will be opened already and no autocommand will be defined at that time.
 
 License
 #######
