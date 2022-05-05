@@ -8,7 +8,9 @@ Description
 This simple plugin for Neovim logs into a SQLiteDB what you want and when you
 want it. For now it logs:
 
-- message from ``logme(message)``;
+- ``_id`` (which is an alias for ``type = "integer", required = true, primary = true``). See changelog record for ``v0.3`` for this;
+- message from ``logme(message)``, which is put into ``action`` row field;
+- comment;
 - current buffer name;
 - current cursor position;
 - human-readable timestamp;
@@ -65,6 +67,22 @@ Keep in mind ``BufRead*`` will not fire when autocommand is defined in
 ``.lvimrc``, and the file is opened with command line. ``vim-localvimrc`` has
 to load and start looking for ``.lvimrc`` in current directory, but the file
 will be opened already and no autocommand will be defined at that time.
+
+Changelog
+#########
+
+v0.3
+   I'm using Far Manager with the splendid Polygon plugin to view SQLite
+   databases. Sadly, Polygon cannot display some columns first or sort db by
+   any of the columns. It sorts the log by the first (alphabetically
+   superior) column name, because ``sqlite.lua`` writes fields into db
+   alphabetically, so ``action`` column comes first. Since its usually a good
+   idea to have a unique index, I've added ``_id`` field, so it shows first
+   and the log shows in chronological order.
+
+   Also added a ``comment`` field. Use ``logme(action, comment)`` to log some
+   individial entry (for example, ``logme("comment", "nice day for
+   a walk")``), not only open/save/close.
 
 License
 #######
