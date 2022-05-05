@@ -54,12 +54,12 @@ Call Lua logging function when needed:
 
 Use autocommands (possibly in your ``.lvimrc``):
 
-| ``augroup logs``
-| ``au! logs``
-| ``autocmd BufReadPost * lua require'logger'.logme('new/open')``
-| ``autocmd BufWritePost * lua require'logger'.logme('save')``
-| ``autocmd BufUnload * lua require'logger'.logme('close')``
-| ``augroup END``
+   | ``augroup logs``
+   | ``au! logs``
+   | ``autocmd BufReadPost * lua require'logger'.logme('new/open')``
+   | ``autocmd BufWritePost * lua require'logger'.logme('save')``
+   | ``autocmd BufUnload * lua require'logger'.logme('close')``
+   | ``augroup END``
 
 Keep in mind ``BufRead*`` will not fire when autocommand is defined in
 ``.lvimrc``, and the file is opened with command line. ``vim-localvimrc`` has
