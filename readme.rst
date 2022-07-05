@@ -25,7 +25,7 @@ Requirements
 ############
 
 1. SQLite library, built for your machine and operating system (SQLite prerequisite)
-2. https://github.com/tami5/sqlite.lua
+2. https://github.com/kkharji/sqlite.lua
 
 Setup
 #####
